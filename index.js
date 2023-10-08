@@ -46,6 +46,12 @@ async function run() {
         const result = await MyJewelryCollection.insertOne(item);
         res.send(result);
     })
+    app.get('/myjewelry',async(req,res)=>{
+        const item = req.body;
+        const result = await AllJewelryCollection.find(item).toArray();
+        res.send(result);
+    })
+    
 
 
 
