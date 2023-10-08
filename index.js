@@ -28,6 +28,7 @@ async function run() {
 
      const AllJewelryCollection = await client.db('jewelryDB').collection('allJewelry');
      const MyJewelryCollection = await client.db('jewelryDB').collection('myJewelry');
+     const userCollection = await client.db('jewelryDB').collection('user');
 
      app.post('/alljewelry',async(req,res)=>{
          const item = req.body;
