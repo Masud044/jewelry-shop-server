@@ -55,7 +55,20 @@ async function run() {
     })
     app.post('/user',async(req,res)=>{
         const item = req.body;
+        const query = {email:item.email}
+        const users = await userCollection.findOne(query);
+        if(users){
+           return res.send({message:'user already exists'})
+        }
         const result = await userCollection.insertOne(item);
+        res.send(result);
+    })
+
+    app.get('/user/admin/:email',async(req,res)=>{
+        const email = req.params.email;
+        const query = {email:email};
+        const user = await userCollection.findOne(query);
+        const result = {admin:user?.role == 'admin'};
         res.send(result);
     })
 
