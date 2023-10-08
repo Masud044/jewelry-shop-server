@@ -47,8 +47,9 @@ async function run() {
         res.send(result);
     })
     app.get('/myjewelry',async(req,res)=>{
-        const item = req.body;
-        const result = await AllJewelryCollection.find(item).toArray();
+        const email = req.query.email;
+        const query = {email:email}
+        const result = await MyJewelryCollection.find(query).toArray();
         res.send(result);
     })
     
