@@ -6,6 +6,7 @@ const cors = require('cors');
 const port = process.env.PORT || 5000;
 
 app.use(cors());
+app.use(express.json());
 
 
 
@@ -26,6 +27,18 @@ async function run() {
     
 
      const AllJewelryCollection = await client.db('jewelryDB').collection('allJewelry');
+
+     app.post('/alljewelry',async(req,res)=>{
+         const item = req.body;
+         const result = await AllJewelryCollection.insertOne(item);
+         res.send(result);
+     })
+
+     app.get('/alljewelry',async(req,res)=>{
+        const item = req.body;
+        const result = await AllJewelryCollection.find(item).toArray();
+        res.send(result);
+    })
 
 
 
