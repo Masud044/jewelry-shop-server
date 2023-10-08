@@ -27,6 +27,7 @@ async function run() {
     
 
      const AllJewelryCollection = await client.db('jewelryDB').collection('allJewelry');
+     const MyJewelryCollection = await client.db('jewelryDB').collection('myJewelry');
 
      app.post('/alljewelry',async(req,res)=>{
          const item = req.body;
@@ -40,6 +41,11 @@ async function run() {
         res.send(result);
     })
 
+    app.post('/myjewelry',async(req,res)=>{
+        const item = req.body;
+        const result = await MyJewelryCollection.insertOne(item);
+        res.send(result);
+    })
 
 
 
